@@ -45,10 +45,10 @@ I ♥ TypeScript / JavaScript.
 
 [株式会社ダイレクトサーチジャパン](https://direct-search.jp./) 代表取締役
 
-* GitHub [monsat](https://github.com/monsat)
-* Twitter [ktanaka](https://twitter.com/ktanaka)
-* Zenn [coedo](https://zenn.dev/coedo)
-* Blog [kohji.blog](https://kohji.blog)
+* 　<codicon-github-inverted /> [monsat](https://github.com/monsat)
+* 　<icon-park-solid-twitter /> [@ktanaka](https://twitter.com/ktanaka)
+* 　<simple-icons-zenn /> [coedo](https://zenn.dev/coedo) (Zenn)
+* 　<ic-baseline-article /> [kohji.blog](https://kohji.blog)
 
 ---
 title: Today's Topic

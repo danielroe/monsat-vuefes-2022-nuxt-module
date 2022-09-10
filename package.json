@@ -10,5 +10,13 @@
     "@slidev/cli": "^0.35.6",
     "@slidev/theme-default": "*",
     "@slidev/theme-seriph": "*"
+  },
+  "devDependencies": {
+    "@iconify-json/codicon": "^1.1.16",
+    "@iconify-json/fa6-brands": "^1.1.6",
+    "@iconify-json/ic": "^1.1.9",
+    "@iconify-json/icon-park-solid": "^1.1.4",
+    "@iconify-json/mdi": "^1.1.9",
+    "@iconify-json/simple-icons": "^1.1.25"
   }
 }
