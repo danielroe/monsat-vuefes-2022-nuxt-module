@@ -31,9 +31,9 @@ css: unocss
 
 ---
 tit:e: About me
-layout: image-right
+layout: profile
 image: ./images/kohji_vector_white.png
-class: grid-col-3/4
+class: 
 ---
 # たなかこうじ @Co-Edo
 
@@ -47,6 +47,7 @@ I ♥ TypeScript / JavaScript.
 
 * GitHub [monsat](https://github.com/monsat)
 * Twitter [ktanaka](https://twitter.com/ktanaka)
+* Zenn [coedo](https://zenn.dev/coedo)
 * Blog [kohji.blog](https://kohji.blog)
 
 ---
