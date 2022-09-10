@@ -23,6 +23,199 @@ drawings:
 css: unocss
 ---
 
+# Nuxt モジュールの作り方を知って<br>開発した機能を再利用しよう
+
+田中弘治@Co-Edo
+
+@ktanaka
+
+---
+tit:e: About me
+layout: image-right
+image: ./images/kohji_vector_white.png
+class: grid-col-3/4
+---
+# たなかこうじ @Co-Edo
+
+Vue.js と Nuxt を愛するフロントエンドエンジニア
+
+I ♥ TypeScript / JavaScript.
+
+[コワーキングスペース茅場町 Co-Edo](https://www.coworking.tokyo.jp/) 運営代表者
+
+[株式会社ダイレクトサーチジャパン](https://direct-search.jp./) 代表取締役
+
+* GitHub [monsat](https://github.com/monsat)
+* Twitter [ktanaka](https://twitter.com/ktanaka)
+* Blog [kohji.blog](https://kohji.blog)
+
+---
+title: Today's Topic
+layout: center
+---
+
+# Nuxt Module
+
+<style>
+h1 {
+  font-size: 6em;
+}
+</style>
+
+---
+---
+
+# 基本をおさらい
+
+* Vue.js
+  * クールな JavaScript フレームワーク
+* Nuxt
+  * クールな Web アプリケーション（メタ）フレームワーク
+
+## そして
+
+* Vue.js プラグイン
+  * Vue.js のアプリケーションを拡張する
+* Nuxt プラグイン
+  * アプリケーションのランタイムを拡張する
+* Nuxt モジュール
+  * ビルドタイムに動作し、アプリケーションだけでなく Nuxt 自体も拡張可能
+
+---
+---
+
+# なぜ Nuxt モジュール ?
+
+## 複数のプロジェクト間で使用可能
+
+共通の設定やコンポーネント等の使用が可能
+
+## Nuxt 自体の拡張が可能
+
+Nuxt は高機能な一方で、コアはとてもシンプルに作られている
+
+## ビルドタイムの動作を拡張可能
+
+例）外部ファイルを読み込んでコンテンツに加えたい
+
+## プラグイン自体を拡張可能
+
+例）プラグインのインストール前に何らかの処理をしたい
+
+
+---
+layout: center
+---
+
+# Nuxt モジュールの使い方
+
+---
+---
+
+# `nuxt.config.ts` に記述するのみ
+
+```ts {all|5}
+// nuxt.config.ts
+
+import { defineNuxtConfig } from 'nuxt'
+import BasicAuth from 'nuxt-basic-authentication-module'
+
+export default defineNuxtConfig({
+  modules: [
+    '@nuxtjs/example', // npm のパッケージ名で記述
+    './modules/example', // プロジェクト内のローカルモジュール
+    ['./modules/example', { token: '123' }], // オプションを指定する場合
+    BasicAuth, // これも可
+
+    // インラインで記述することもできる
+    async (inlineOptions, nuxt) => { },
+  ]
+})
+```
+
+---
+layout: center
+---
+
+# モジュール開発、最初の一歩
+
+---
+---
+
+# モジュールの開発 ＝ コードやロジックの再利用
+
+どのプロジェクトでも同じような設定で Vue プラグインを読み込む場合
+
+毎回似たような認証のロジックを書いている場合
+
+いつも使用する `ref()` や `computed()` がある場合
+
+汎用的に使えるコンポーネントを作成済の場合
+
+## モジュールにしておくと使い回しやすい
+
+* Plugins の再利用
+* Composables の再利用
+* Components 等 の再利用
+* ぜんぶ組み合わせて再利用
+
+---
+---
+
+# Nuxt モジュールの正体
+
+開発モードでの起動 (`nuxi dev`) 時や  
+本番用のビルド (`nuxi build`, `nuxi generate`) 時に実行される  
+**非同期関数**
+
+```ts {all|7-9}
+// modules/module.ts
+
+export default async (inlineOptions, nuxt) => {
+  console.log(inlineOptions.foo) // `bar`
+  console.log(nuxt.options.dev) // true or false
+
+  nuxt.hook('ready', async nuxt => {
+    console.log('Nuxt is ready')
+  })
+}
+```
+
+<v-click>
+
+`nuxt.hook()` で、特定のタイミングをフックできる
+
+</v-click>
+
+---
+layout: center
+---
+
+# **Nuxt Kit** が神！
+
+---
+---
+
+# Nuxt Kit
+
+Nuxt モジュールの作成がとても効率的に！
+
+Nuxt Kit ・・・ ビルドやランタイムのフックや、コアの機能を活用するためのユーティリティ
+
+
+
+---
+---
+
+# ビルドやランタイムの特定の機能をフックする
+
+* Nuxt Hooks
+* App Hooks
+
+
+
+---
+---
 # Welcome to Slidev
 
 Presentation slides for developers
@@ -43,8 +236,11 @@ Presentation slides for developers
   </a>
 </div>
 
+テスト23
 <!--
 The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
+
+テストコメント
 -->
 
 ---
