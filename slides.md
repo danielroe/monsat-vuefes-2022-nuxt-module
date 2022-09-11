@@ -203,7 +203,7 @@ layout: center
 ビルドやランタイムのフックや、コアの機能を活用するためのユーティリティ  
 **Nuxt モジュールの作成がとても効率的に！**
 
-<div class="grid grid-cols-2 text-[0.88em]">
+<div class="grid grid-cols-2 text-[0.85em]">
 <div>
 
 * Compatibility
@@ -211,7 +211,9 @@ layout: center
   * `assertNuxtCompatibility(constraints)`
   * `hasNuxtCompatibility(constraints)`
   * `isNuxt2()`, `isNuxt3()`, `getNuxtVersion()`
-* Components
+* Imports, Components
+  * `addImports(imports: Import | Import[])`
+  * `addImportsDir(dirs: string | string[])`
   * `addComponentsDir(dir)`
   * `addComponent(componentObject)`
 * Plugins, Templates
@@ -722,12 +724,11 @@ image: ./images/face_smile_man1.png
 `src/runtime/components` フォルダに `CancelConfirm.vue` を保存し `src/module.ts` を変更
 
 ```ts
-import { resolve } from 'path'
-import { fileURLToPath } from 'url'
-import { defineNuxtModule, addPlugin } from '@nuxt/kit'
+import { defineNuxtModule, createResolver, addComponentsDir } from '@nuxt/kit'
 export interface ModuleOptions {
   prefix?: string
 }
+
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: 'coedo-cancel-confirm',
