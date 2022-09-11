@@ -17,7 +17,7 @@ const style = computed(() => handleBackground(props.image))
 <template>
   <div class="grid grid-cols-4 grid-rows-3  w-full h-full">
     <div class="col-span-4"></div>
-    <div class="slidev-layout default col-span-3 ml-12 rounded-xl bg-dark-300 text-right" :class="props.class">
+    <div class="slidev-layout default col-span-3 ml-12 rounded-xl bg-dark-300 text-right balloon" :class="props.class">
       <slot />
     </div>
     <div class="w-full h-full main-image" :style="style" />
@@ -28,5 +28,19 @@ const style = computed(() => handleBackground(props.image))
 <style scoped>
 .main-image {
   background-size: contain !important;
+}
+
+.balloon:after {
+  content: "";
+  position: absolute;
+  top: 40%;
+  right: 244px;
+  width: 0px;
+  height: 0px;
+  margin: auto;
+  border-style: solid;
+  border-color: rgb(45, 45, 45) transparent transparent transparent;
+  border-width: 20px 20px 20px 0;
+  transform: rotate(135deg);
 }
 </style>
