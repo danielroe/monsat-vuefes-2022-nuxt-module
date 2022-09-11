@@ -833,6 +833,139 @@ image: ./images/face_smile_man1.png
 
 ---
 ---
+
+# コンポーネントが増えても<br> `module.ts` の変更はありません
+
+今回は `src/runtime/components` 以下のすべてのコンポーネントを自動的にインポートされるようにしています。
+
+別途 Composables 等を読み込む場合は、同じように実装できます。
+
+また、今回は不要でしたが、次のような対応も可能です。
+
+* ビルド時に外部のファイルを fetch してきてコンテンツに反映する
+  * json や markdown ファイルを読み込むなど
+* 
+
+---
+---
+
+# 利用側の実装内容だけ変更
+
+`playground/app.vue` を変更
+
+```html
+<script setup lang="ts">
+import { ref, refAutoReset } from '#imports'
+import { CoedoCancelConfirm, CoedoLastOffer } from '#components'
+const successMessage = refAutoReset(' ', 3000) // 3秒後にメッセージを消す
+const canceledMessage = refAutoReset(' ', 3000) // 3秒後にメッセージを消す
+const CancelConfirmComponent = ref<InstanceType<typeof CoedoCancelConfirm>>(null)
+const LastOfferComponent = ref<InstanceType<typeof CoedoLastOffer>>(null)
+
+const completeNormal = (result: boolean) => {
+  successMessage.value = '解約しました'
+  setTimeout(() => CancelConfirmComponent.value.reveal(), 1000)
+}
+const completeCancel = (result: boolean) => {
+  successMessage.value = '解約手続きを進めます'
+  setTimeout(() => LastOfferComponent.value.reveal(), 1000)
+}
+const completeLast = (result: boolean) => {
+  successMessage.value = result ? 'おめでとうございます。解約できました🎉' : 'ご継続いただき、ありがとうございます😎'
+}
+const cancelConfirm = () => {
+  canceledMessage.value = 'キャンセルされました'
+}
+</script>
+```
+
+---
+---
+
+# 利用側の実装内容だけ変更
+
+`playground/app.vue` を変更
+
+```html
+<template>
+  <div>
+    Nuxt module playground!
+    <CoedoNormalConfirm
+      @confirm="completeNormal"
+      @cancel="cancelConfirm"
+    >
+      解約します
+    </CoedoNormalConfirm>
+    <CoedoCancelConfirm
+      ref="CancelConfirmComponent"
+      @confirm="completeCancel"
+      @cancel="cancelConfirm"
+    />
+    <CoedoLastOffer
+      ref="LastOfferComponent"
+      @confirm="completeLast"
+      @cancel="cancelConfirm"
+    />
+    <p class="success-message">{{ successMessage }}</p>
+    <p class="canceled-message">{{ canceledMessage }}</p>
+  </div>
+</template>
+```
+
+---
+---
+
+---
+---
+
+---
+---
+
+---
+---
+
+---
+layout: center
+---
+
+# さいごに
+
+---
+---
+
+# 今回実装した解約防止機能は「」により違法です
+
+## 利用者がハッピーになる機能を実装し Vue.js や Nuxt のエコシステムを広げていきましょう！
+
+なお、コワーキングスペース茅場町 Co-Edo は Slack へのメッセージのみで解約可能なシンプル設計です。
+
+---
+layout: talk-left
+image: ./images/business_man1_1_smile.png
+---
+
+# え？ あの機能は使えないの？
+## ダークパターン？なにそれ美味しいの？
+
+---
+layout: center
+---
+
+# ~~実践てきなモジュール開発例~~
+
+ではなく
+# 実践できないモジュール開発例
+
+でした！
+
+<div class="text-right tracking-wide">
+
+田中弘治 @ Co-Edo
+　<icon-park-solid-twitter /> [@ktanaka](https://twitter.com/ktanaka)
+
+</div>
+---
+---
 # Welcome to Slidev
 
 Presentation slides for developers
