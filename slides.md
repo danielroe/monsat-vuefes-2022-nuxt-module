@@ -12,10 +12,9 @@ highlighter: shiki
 lineNumbers: false
 # some information about the slides, markdown enabled
 info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
+  ## Nuxt モジュールの作り方を知って<br>開発した機能を再利用しよう
+  Presentation slides for VueFes 2022
 
-  Learn more at [Sli.dev](https://sli.dev)
 # persist drawings in exports and build
 drawings:
   persist: false
@@ -23,9 +22,13 @@ drawings:
 css: unocss
 ---
 
+<div class="mt-50 font-black drop-shadow-md" style="text-shadow: rgba(0, 0, 0, 0.5) 0 0 4px">
+
 # Nuxt モジュールの作り方を知って<br>開発した機能を再利用しよう
 
 田中弘治@Co-Edo
+
+</div>
 
 ---
 tit:e: About me
@@ -49,17 +52,9 @@ I ♥ TypeScript / JavaScript.
 * 　<ic-baseline-article /> [kohji.blog](https://kohji.blog)
 
 ---
-title: Today's Topic
-layout: center
+layout: image
+image: /vuefes-ss-nuxt-module.png
 ---
-
-# Nuxt Module
-
-<style>
-h1 {
-  font-size: 6em;
-}
-</style>
 
 ---
 ---
@@ -71,6 +66,8 @@ h1 {
 * Nuxt
   * クールな Web アプリケーション（メタ）フレームワーク
 
+<div v-click>
+
 ## プラグインとモジュール
 
 * Vue.js プラグイン
@@ -80,6 +77,8 @@ h1 {
 * Nuxt モジュール
   * Nuxt 起動時に動作し、アプリケーションや Nuxt 自体を拡張する
   * ビルドタイムとランタイムのどちらも拡張可能
+
+</div>
 
 ---
 ---
@@ -245,8 +244,8 @@ layout: center
 
 # ビルドやランタイムの特定の機能をフックする
 
-* Nuxt Hooks
 * App Hooks
+* Nuxt Hooks
 
 
 
@@ -479,7 +478,13 @@ image: /face_smile_man1.png
 ---
 
 # `useConfirmDialog` を使って…
+
+<div v-click>
+
 ## できた！
+
+</div>
+
 ---
 ---
 
@@ -507,6 +512,20 @@ const { isRevealed, reveal, confirm, cancel, onReveal, onConfirm, onCancel } = u
   </dialog>
 </template>
 ```
+
+---
+layout: image
+image: /vuefes-ss-normal.png
+class: contain
+---
+
+
+---
+layout: image
+image: /vuefes-ss-vueuse.png
+---
+
+
 ---
 layout: talk-right
 image: /face_smile_man1.png
@@ -586,7 +605,12 @@ image: /face_smile_man1.png
 ---
 
 # モジュールにするには<br>何から始めればいいのだろう？
+
+<div v-click>
+
 ## お。なんか便利そうなのがあった
+
+</div>
 
 ---
 ---
@@ -598,6 +622,8 @@ image: /face_smile_man1.png
 ```bash
 $ npx nuxi init -t module nuxt-your-module-name
 ```
+
+<div v-click>
 
 次のようなフォルダ構成の環境ができます。
 
@@ -613,6 +639,13 @@ $ npx nuxi init -t module nuxt-your-module-name
 * 　<lucide-file-json-2 /> package.json
 
 </div>
+</div>
+
+<style>
+.slidev-code {
+  font-size: 1.25em !important;
+}
+</style>
 
 ---
 layout: talk-right
@@ -620,7 +653,12 @@ image: /face_smile_man1.png
 ---
 
 # `src` ディレクトリで開発し
+
+<div v-click>
+
 ## `yarn dev` すると `playground` 以下の Nuxt アプリで動作確認できるのね
+
+</div>
 
 ---
 ---
@@ -715,7 +753,7 @@ image: /face_smile_man1.png
 
 # Nuxt モジュールでコンポーネントを読み込む
 
-`src/runtime/components` フォルダに `CancelConfirm.vue` を保存し `src/module.ts` を変更
+`src/runtime/components` に `CancelConfirm.vue` を保存し `src/module.ts` を変更
 
 ```ts
 import { defineNuxtModule, createResolver, addComponentsDir } from '@nuxt/kit'
@@ -823,14 +861,39 @@ image: /face_smile_man1.png
 
 # 作ったもの
 
-@TODO: 動画を挿入
+<div class="w-3/4 mx-auto">
+  <video controls>
+    <source src="/vuefes-movie-cancel.mp4" type="video/mp4">
+  </video>
+</div>
 
 ---
 ---
 
-# コンポーネント `.vue` の追加だけで対応完了<br> `module.ts` の変更はありません
+# 完成したモジュール
 
-今回は `src/runtime/components` 以下のすべてのコンポーネントを自動的にインポートされるようにしていましたので、 `module.ts` の変更は不要です。
+<div class="pa-2 bg-dark-600">
+
+* 　<TreeFolder> src</TreeFolder>
+  * 　<cib-typescript /> module.ts
+  * 　<TreeFolder> runtime</TreeFolder>
+    * 　<TreeFolder> components</TreeFolder>
+      * 　<ph-file-vue-fill /> NormalConfirm.vue
+      * 　<ph-file-vue-fill /> CancelConfirm.vue ・・・追加
+      * 　<ph-file-vue-fill /> LastOffer.vue ・・・・・ 追加
+* 　<TreeFolder> playground</TreeFolder>
+  * 　<ph-file-vue-fill /> app.vue
+  * <cib-typescript /> nuxt.config.ts
+* 　<lucide-file-json-2 /> package.json
+
+</div>
+
+---
+---
+
+# コンポーネント追加だけで対応できたので<br> `module.ts` の変更はありません
+
+今回は `src/runtime/components` 以下のコンポーネントがインポートされるようにしていましたので、 `module.ts` の変更は不要です。
 
 別途 Composables 等を読み込む場合でも `'imports:dirs'` をフックし、同じように実装できます。
 
@@ -848,7 +911,7 @@ layout: center
 
 というわけで
 
-# 実践てきなモジュール開発例
+# 実践てきな🤔モジュール開発例
 
 でした
 
@@ -925,9 +988,14 @@ layout: center
 # ~~実践てきなモジュール開発例~~
 
 ではなく
+
+<div v-click>
+
 # 実践できないモジュール開発例
 
 でした！
+
+</div>
 
 <div class="text-right tracking-wide">
 
