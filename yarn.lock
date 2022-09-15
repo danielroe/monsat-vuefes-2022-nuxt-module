@@ -99,6 +99,13 @@
   dependencies:
     "@iconify/types" "*"
 
+"@iconify-json/logos@^1.1.16":
+  version "1.1.16"
+  resolved "https://registry.yarnpkg.com/@iconify-json/logos/-/logos-1.1.16.tgz#a9bed9c55855a897e75069695941e724279c599a"
+  integrity sha512-ka6Irz4qNuk+RNDDVZEMTw3ceUk43FpBxReikswTrUXPlis6LgLZNyh9SV00SFeuBdT+A5gF45kJ124IxtOL5g==
+  dependencies:
+    "@iconify/types" "*"
+
 "@iconify-json/lucide@^1.1.40":
   version "1.1.40"
   resolved "https://registry.yarnpkg.com/@iconify-json/lucide/-/lucide-1.1.40.tgz#69c00330c97194676bc316d33599aa14a0d84e3d"

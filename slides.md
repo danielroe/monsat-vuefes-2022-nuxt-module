@@ -3,7 +3,7 @@
 theme: seriph
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
-background: ./images/coedo_5th_01.jpg
+background: /coedo_5th_01.jpg
 # apply any windi css classes to the current slide
 class: 'text-center'
 # https://sli.dev/custom/highlighters.html
@@ -30,7 +30,7 @@ css: unocss
 ---
 tit:e: About me
 layout: profile
-image: ./images/kohji_vector_white.png
+image: /kohji_vector_white.png
 class: 
 ---
 # たなかこうじ @Co-Edo
@@ -116,8 +116,7 @@ layout: center
 
 ```ts {all|5}
 // nuxt.config.ts
-
-import { defineNuxtConfig } from 'nuxt'
+import { defineNuxtConfig } from 'nuxt/config'
 import BasicAuth from 'nuxt-basic-authentication-module'
 
 export default defineNuxtConfig({
@@ -264,6 +263,8 @@ export interface RuntimeNuxtHooks {
   'app:rendered': (ctx: AppRenderedContext) => HookResult
   'app:redirected': () => HookResult
   'app:suspense:resolve': (Component?: VNode) => HookResult
+  'link:prefetch': (link: string) => HookResult
+  // App Error
   'app:error': (err: any) => HookResult
   'app:error:cleared': (options: { redirect?: string }) => HookResult
   'app:data:refresh': (keys?: string[]) => HookResult
@@ -433,7 +434,7 @@ layout: center
 
 ---
 layout: talk-left
-image: ./images/business_man1_1_smile.png
+image: /business_man1_1_smile.png
 ---
 
 # サブスク解約機能の実装ありがとう
@@ -441,7 +442,7 @@ image: ./images/business_man1_1_smile.png
 
 ---
 layout: talk-right
-image: ./images/face_smile_man1.png
+image: /face_smile_man1.png
 ---
 
 # （嫌な予感…）
@@ -449,7 +450,7 @@ image: ./images/face_smile_man1.png
 
 ---
 layout: talk-left
-image: ./images/business_man1_1_smile.png
+image: /business_man1_1_smile.png
 ---
 
 # 誤クリックで解約できてしまうので
@@ -457,7 +458,7 @@ image: ./images/business_man1_1_smile.png
 
 ---
 layout: talk-right
-image: ./images/face_smile_man1.png
+image: /face_smile_man1.png
 ---
 
 # （ほっ…）
@@ -466,7 +467,7 @@ image: ./images/face_smile_man1.png
 
 ---
 layout: talk-right
-image: ./images/face_smile_man1.png
+image: /face_smile_man1.png
 ---
 
 # **VueUse** に確か…
@@ -474,7 +475,7 @@ image: ./images/face_smile_man1.png
 
 ---
 layout: talk-right
-image: ./images/face_smile_man1.png
+image: /face_smile_man1.png
 ---
 
 # `useConfirmDialog` を使って…
@@ -508,7 +509,7 @@ const { isRevealed, reveal, confirm, cancel, onReveal, onConfirm, onCancel } = u
 ```
 ---
 layout: talk-right
-image: ./images/face_smile_man1.png
+image: /face_smile_man1.png
 ---
 
 # Nuxt モジュールにするために
@@ -572,7 +573,7 @@ const canceled = () => {
     <CancelConfirm
       @confirm="completeCancel"
       @cancel="canceled"
-    />
+    >
       サブスクを解約する
     </CancelConfirm>
   </div>
@@ -581,7 +582,7 @@ const canceled = () => {
 
 ---
 layout: talk-right
-image: ./images/face_smile_man1.png
+image: /face_smile_man1.png
 ---
 
 # モジュールにするには<br>何から始めればいいのだろう？
@@ -615,7 +616,7 @@ $ npx nuxi init -t module nuxt-your-module-name
 
 ---
 layout: talk-right
-image: ./images/face_smile_man1.png
+image: /face_smile_man1.png
 ---
 
 # `src` ディレクトリで開発し
@@ -627,7 +628,7 @@ image: ./images/face_smile_man1.png
 # `playground/nuxt.config.ts` の中身
 
 ```ts
-import { defineNuxtConfig } from 'nuxt'
+import { defineNuxtConfig } from 'nuxt/config'
 import MyModule from '..'
 
 export default defineNuxtConfig({
@@ -642,7 +643,7 @@ export default defineNuxtConfig({
 
 <v-click>
 
-2行目で開発中のモジュールを読み込んでいる
+先頭で開発中のモジュールを読み込んでいる
 
 ```ts
 import MyModule from '..' // ← 上位のフォルダを読むように設定されている
@@ -653,7 +654,6 @@ import MyModule from '..' // ← 上位のフォルダを読むように設定�
 </v-click>
 
 ---
-clicks: 4
 ---
 
 # `src/module.ts` の中身
@@ -685,30 +685,24 @@ export default defineNuxtModule<ModuleOptions>({
 })
 ```
 
-<div v-if="$slidev.nav.clicks >= 1">
+---
+---
+# options
 
-<div v-click>1</div>
-<div v-click>
+`defaults` の内容を `nuxt.options[configKey]` で上書き
 
-## options
+`inlineOptions` があれば `inlineOptions` で上書き（最優先）
 
-defaults の内容を nuxt.options[configKey] で上書き
-inlineOptions があれば inlineOptions で上書き（最優先）
+# defineNuxtModule
 
-</div>
-<div v-click>
-
-## defineNuxtModule
-
-オプションを適宜マージし、hooks 等を addHooks しつつ setup() を実行し、NuxtModule を返す
-
-</div>
-
-</div>
+* オプションを適宜マージ
+* hooks 等を addHooks
+* setup() を実行
+* NuxtModule を返す
 
 ---
 layout: talk-right
-image: ./images/face_smile_man1.png
+image: /face_smile_man1.png
 ---
 
 # `src/runtime/components` に `CancelConfirm.vue` を保存して
@@ -772,16 +766,16 @@ const canceled = () => {
     <CoedoCancelConfirm
       @confirm="completeCancel"
       @cancel="canceled"
-    />
+    >
       サブスクを解約する
-    </CancelConfirm>
+    </CoedoCancelConfirm>
   </div>
 </template>
 ```
 
 ---
 layout: talk-right
-image: ./images/face_smile_man1.png
+image: /face_smile_man1.png
 ---
 
 # できた 🎉
@@ -795,7 +789,7 @@ layout: center
 
 ---
 layout: talk-left
-image: ./images/business_man1_1_smile.png
+image: /business_man1_1_smile.png
 ---
 
 # ついでに「解約が減るように」して
@@ -803,7 +797,7 @@ image: ./images/business_man1_1_smile.png
 
 ---
 layout: talk-right
-image: ./images/face_smile_man1.png
+image: /face_smile_man1.png
 ---
 
 # （分かりました。実装します）
@@ -818,7 +812,7 @@ layout: center
 
 ---
 layout: talk-right
-image: ./images/face_smile_man1.png
+image: /face_smile_man1.png
 ---
 
 # できた
@@ -834,95 +828,64 @@ image: ./images/face_smile_man1.png
 ---
 ---
 
-# コンポーネントが増えても<br> `module.ts` の変更はありません
+# コンポーネント `.vue` の追加だけで対応完了<br> `module.ts` の変更はありません
 
-今回は `src/runtime/components` 以下のすべてのコンポーネントを自動的にインポートされるようにしています。
+今回は `src/runtime/components` 以下のすべてのコンポーネントを自動的にインポートされるようにしていましたので、 `module.ts` の変更は不要です。
 
-別途 Composables 等を読み込む場合は、同じように実装できます。
+別途 Composables 等を読み込む場合でも `'imports:dirs'` をフックし、同じように実装できます。
 
-また、今回は不要でしたが、次のような対応も可能です。
+また、今回は不要でしたが、たとえば次のような対応も可能です。
 
+* オプションの内容によって動作を変える
+* ルーティングをフックして、特別なルーティングを加える
+  * `/news` と `/news/[slug].vue` で、お知らせ一覧やお知らせページを表示するなど
 * ビルド時に外部のファイルを fetch してきてコンテンツに反映する
   * json や markdown ファイルを読み込むなど
-* 
+
+---
+layout: center
+---
+
+というわけで
+
+# 実践てきなモジュール開発例
+
+でした
 
 ---
 ---
 
-# 利用側の実装内容だけ変更
+# みんなでエコシステムを広げていきましょう
 
-`playground/app.vue` を変更
 
-```html
-<script setup lang="ts">
-import { ref, refAutoReset } from '#imports'
-import { CoedoCancelConfirm, CoedoLastOffer } from '#components'
-const successMessage = refAutoReset(' ', 3000) // 3秒後にメッセージを消す
-const canceledMessage = refAutoReset(' ', 3000) // 3秒後にメッセージを消す
-const CancelConfirmComponent = ref<InstanceType<typeof CoedoCancelConfirm>>(null)
-const LastOfferComponent = ref<InstanceType<typeof CoedoLastOffer>>(null)
 
-const completeNormal = (result: boolean) => {
-  successMessage.value = '解約しました'
-  setTimeout(() => CancelConfirmComponent.value.reveal(), 1000)
-}
-const completeCancel = (result: boolean) => {
-  successMessage.value = '解約手続きを進めます'
-  setTimeout(() => LastOfferComponent.value.reveal(), 1000)
-}
-const completeLast = (result: boolean) => {
-  successMessage.value = result ? 'おめでとうございます。解約できました🎉' : 'ご継続いただき、ありがとうございます😎'
-}
-const cancelConfirm = () => {
-  canceledMessage.value = 'キャンセルされました'
-}
-</script>
-```
+<div class="my-30 text-center">
+
+<logos-vitejs class="mx-10 text-[640%]" />
+<logos-vue class="mx-10 text-[640%]" />
+<logos-nuxt-icon class="mx-10 text-[640%]" />
+
+</div>
 
 ---
 ---
 
-# 利用側の実装内容だけ変更
+# おまけ: npm パッケージとして公開する
 
-`playground/app.vue` を変更
+せっかく作った Nuxt モジュールです。
+ほかの Nuxt ユーザーのために公開しましょう。
 
-```html
-<template>
-  <div>
-    Nuxt module playground!
-    <CoedoNormalConfirm
-      @confirm="completeNormal"
-      @cancel="cancelConfirm"
-    >
-      解約します
-    </CoedoNormalConfirm>
-    <CoedoCancelConfirm
-      ref="CancelConfirmComponent"
-      @confirm="completeCancel"
-      @cancel="cancelConfirm"
-    />
-    <CoedoLastOffer
-      ref="LastOfferComponent"
-      @confirm="completeLast"
-      @cancel="cancelConfirm"
-    />
-    <p class="success-message">{{ successMessage }}</p>
-    <p class="canceled-message">{{ canceledMessage }}</p>
-  </div>
-</template>
-```
+## 加えるもの
 
----
----
+* 汎用的なオプションの用意
+* README.md
+* テスト (Vitest)
 
----
----
+## `np` が便利
 
----
----
+`npx np` で、煩わしいバージョニングから NPM へのデプロイまですべて行えます。
 
----
----
+[![npx np](/npx_np.png)](https://zenn.dev/rdlabo/articles/1fda37f6e1025999e86e)
 
 ---
 layout: center
@@ -933,15 +896,23 @@ layout: center
 ---
 ---
 
-# 今回実装した解約防止機能は「」により違法です
+# 今回実装した解約防止機能は<br>「消費者契約法」により違法です
 
-## 利用者がハッピーになる機能を実装し Vue.js や Nuxt のエコシステムを広げていきましょう！
+また、サブスクリプションサービスを申し込む際の “最終確認画面”において、次の事項を簡単に確認できるよう表示する必要があります
 
-なお、コワーキングスペース茅場町 Co-Edo は Slack へのメッセージのみで解約可能なシンプル設計です。
+* 提供するサービスの期間・回数等に関する事項
+* 提供するサービスの料金に関する事項
+* **キャンセル・解約に関する事項**
+
+<div class="my-8"></div>
+
+## 利用者がハッピーになる機能を実装し<br>みんなで Vue.js や Nuxt のエコシステムを広げていきましょう！
+
+[コワーキングスペース茅場町 Co-Edo](https://www.coworking.tokyo.jp/) は **Slack のみで解約可能** なシンプル設計です😎
 
 ---
 layout: talk-left
-image: ./images/business_man1_1_smile.png
+image: /business_man1_1_smile.png
 ---
 
 # え？ あの機能は使えないの？
@@ -964,368 +935,3 @@ layout: center
 　<icon-park-solid-twitter /> [@ktanaka](https://twitter.com/ktanaka)
 
 </div>
----
----
-# Welcome to Slidev
-
-Presentation slides for developers
-
-<div class="pt-12">
-  <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
-    Press Space for next page <carbon:arrow-right class="inline"/>
-  </span>
-</div>
-
-<div class="abs-br m-6 flex gap-2">
-  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon:edit />
-  </button>
-  <a href="https://github.com/slidevjs/slidev" target="_blank" alt="GitHub"
-    class="text-xl icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon-logo-github />
-  </a>
-</div>
-
-テスト23
-<!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
-
-テストコメント
--->
-
----
-
-# What is Slidev?
-
-Slidev is a slides maker and presenter designed for developers, consist of the following features
-
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - theme can be shared and used with npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embedding Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export into PDF, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - anything possible on a webpage
-
-<br>
-<br>
-
-Read more about [Why Slidev?](https://sli.dev/guide/why)
-
-<!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/guide/syntax#embedded-styles
--->
-
-<style>
-h1 {
-  background-color: #2B90B6;
-  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-}
-</style>
-
----
-
-# Navigation
-
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/navigation.html)
-
-### Keyboard Shortcuts
-
-|     |     |
-| --- | --- |
-| <kbd>right</kbd> / <kbd>space</kbd>| next animation or slide |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd> | previous slide |
-| <kbd>down</kbd> | next slide |
-
-<!-- https://sli.dev/guide/animations.html#click-animations -->
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-/>
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
-
----
-layout: image-right
-image: https://source.unsplash.com/collection/94734566/1920x1080
----
-
-# Code
-
-Use code snippets and get the highlighting directly![^1]
-
-```ts {all|2|1-6|9|all}
-interface User {
-  id: number
-  firstName: string
-  lastName: string
-  role: string
-}
-
-function updateUser(id: number, update: User) {
-  const user = getUser(id)
-  const newUser = { ...user, ...update }
-  saveUser(id, newUser)
-}
-```
-
-<arrow v-click="3" x1="400" y1="420" x2="230" y2="330" color="#564" width="3" arrowSize="1" />
-
-[^1]: [Learn More](https://sli.dev/guide/syntax.html#line-highlighting)
-
-<style>
-.footnotes-sep {
-  @apply mt-20 opacity-10;
-}
-.footnotes {
-  @apply text-sm opacity-75;
-}
-.footnote-backref {
-  display: none;
-}
-</style>
-
----
-
-# Components
-
-<div grid="~ cols-2 gap-4">
-<div>
-
-You can use Vue components directly inside your slides.
-
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
-
-```html
-<Counter :count="10" />
-```
-
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
-
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
-
-</div>
-<div>
-
-```html
-<Tweet id="1390115482657726468" />
-```
-
-<Tweet id="1390115482657726468" scale="0.65" />
-
-</div>
-</div>
-
-
----
-class: px-20
----
-
-# Themes
-
-Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
-
-<div grid="~ cols-2 gap-2" m="-t-2">
-
-```yaml
----
-theme: default
----
-```
-
-```yaml
----
-theme: seriph
----
-```
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true">
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true">
-
-</div>
-
-Read more about [How to use a theme](https://sli.dev/themes/use.html) and
-check out the [Awesome Themes Gallery](https://sli.dev/themes/gallery.html).
-
----
-preload: false
----
-
-# Animations
-
-Animations are powered by [@vueuse/motion](https://motion.vueuse.org/).
-
-```html
-<div
-  v-motion
-  :initial="{ x: -80 }"
-  :enter="{ x: 0 }">
-  Slidev
-</div>
-```
-
-<div class="w-60 relative mt-6">
-  <div class="relative w-40 h-40">
-    <img
-      v-motion
-      :initial="{ x: 800, y: -100, scale: 1.5, rotate: -50 }"
-      :enter="final"
-      class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://sli.dev/logo-square.png"
-    />
-    <img
-      v-motion
-      :initial="{ y: 500, x: -100, scale: 2 }"
-      :enter="final"
-      class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://sli.dev/logo-circle.png"
-    />
-    <img
-      v-motion
-      :initial="{ x: 600, y: 400, scale: 2, rotate: 100 }"
-      :enter="final"
-      class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://sli.dev/logo-triangle.png"
-    />
-  </div>
-
-  <div
-    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
-    v-motion
-    :initial="{ x: -80, opacity: 0}"
-    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
-    Slidev
-  </div>
-</div>
-
-<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
-<script setup lang="ts">
-const final = {
-  x: 0,
-  y: 0,
-  rotate: 0,
-  scale: 1,
-  transition: {
-    type: 'spring',
-    damping: 10,
-    stiffness: 20,
-    mass: 2
-  }
-}
-</script>
-
-<div
-  v-motion
-  :initial="{ x:35, y: 40, opacity: 0}"
-  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
-
-[Learn More](https://sli.dev/guide/animations.html#motion)
-
-</div>
-
----
-
-# LaTeX
-
-LaTeX is supported out-of-box powered by [KaTeX](https://katex.org/).
-
-<br>
-
-Inline $\sqrt{3x-1}+(1+x)^2$
-
-Block
-$$
-\begin{array}{c}
-
-\nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} &
-= \frac{4\pi}{c}\vec{\mathbf{j}}    \nabla \cdot \vec{\mathbf{E}} & = 4 \pi \rho \\
-
-\nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} & = \vec{\mathbf{0}} \\
-
-\nabla \cdot \vec{\mathbf{B}} & = 0
-
-\end{array}
-$$
-
-<br>
-
-[Learn more](https://sli.dev/guide/syntax#latex)
-
----
-
-# Diagrams
-
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
-
-<div class="grid grid-cols-3 gap-10 pt-4 -mb-6">
-
-```mermaid {scale: 0.5}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
-```
-
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
-
-```plantuml {scale: 0.7}
-@startuml
-
-package "Some Group" {
-  HTTP - [First Component]
-  [Another Component]
-}
-
-node "Other Groups" {
-  FTP - [Second Component]
-  [First Component] --> FTP
-}
-
-cloud {
-  [Example 1]
-}
-
-
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
-  }
-  frame "Foo" {
-    [Frame 4]
-  }
-}
-
-
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
-
-@enduml
-```
-
-</div>
-
-[Learn More](https://sli.dev/guide/syntax.html#diagrams)
-
-
----
-layout: center
-class: text-center
----
-
-# Learn More
-
-[Documentations](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/showcases.html)
