@@ -878,9 +878,9 @@ image: /face_smile_man1.png
   * 　<cib-typescript /> module.ts
   * 　<TreeFolder> runtime</TreeFolder>
     * 　<TreeFolder> components</TreeFolder>
-      * 　<ph-file-vue-fill /> NormalConfirm.vue
-      * 　<ph-file-vue-fill /> CancelConfirm.vue ・・・追加
-      * 　<ph-file-vue-fill /> LastOffer.vue ・・・・・ 追加
+      * 　<ph-file-vue-fill /> CancelConfirm.vue
+      * 　<ph-file-vue-fill /> LastOffer.vue ・・・・・追加
+      * 　<ph-file-vue-fill /> NormalConfirm.vue ・・・追加
 * 　<TreeFolder> playground</TreeFolder>
   * 　<ph-file-vue-fill /> app.vue
   * <cib-typescript /> nuxt.config.ts
