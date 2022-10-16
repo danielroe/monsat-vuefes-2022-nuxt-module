@@ -30,6 +30,11 @@ css: unocss
 
 </div>
 
+<style>
+.slidev-layout.cover h1, .slidev-layout.intro h1 {
+  font-size: 2em;
+}
+</style>
 ---
 tit:e: About me
 layout: profile
