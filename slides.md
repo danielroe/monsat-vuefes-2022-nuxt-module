@@ -113,7 +113,7 @@ layout: center
 
 # `nuxt.config.ts` に記述するのみ
 
-```ts {all|5}
+```ts {all|5|6-10|12-13}
 // nuxt.config.ts
 import { defineNuxtConfig } from 'nuxt/config'
 import BasicAuth from 'nuxt-basic-authentication-module'
@@ -425,7 +425,7 @@ export interface NuxtHooks {
 
 # Nitro App Hooks
 
-```ts
+```ts {all|2-5|6-8}
 export default defineNitroPlugin((nitroApp) => {
   nitroApp.hooks.hook('render:html', (html, { event }) => {
     console.log('render:html', html)
@@ -529,7 +529,7 @@ image: /face_smile_man1.png
 
 ## 
 
-```html
+```html {all|2-3|7|9-15}
 <script setup lang="ts">
 import { useConfirmDialog } from '@vueuse/core'
 const { isRevealed, reveal, confirm, cancel, onReveal, onConfirm, onCancel } = useConfirmDialog()
@@ -578,7 +578,7 @@ image: /face_smile_man1.png
 
 ## 
 
-```html
+```html {all|2-6,8-9}
 <script setup lang="ts">
 type Emits = {
   (e: 'confirm', result: boolean): void
@@ -611,7 +611,7 @@ onCancel(() => emit('cancel'))
 
 Page コンポーネント等、呼び出し側で任意の処理ができるようになりました
 
-```html
+```html {all|13-18|14,3-5}
 <script setup lang="ts">
 // Page Component
 const completeCancel = (result: boolean) => {
@@ -700,7 +700,7 @@ image: /face_smile_man1.png
 
 # `playground/nuxt.config.ts` の中身
 
-```ts
+```ts {all|2}
 import { defineNuxtConfig } from 'nuxt/config'
 import MyModule from '..'
 
@@ -731,7 +731,7 @@ import MyModule from '..' // ← 上位のフォルダを読むように設定�
 
 # `src/module.ts` の中身
 
-```ts {all|14-16|17|5}
+```ts {all|14-16|17-23|19-21}
 import { resolve } from 'path'
 import { fileURLToPath } from 'url'
 import { defineNuxtModule, addPlugin } from '@nuxt/kit'
@@ -790,7 +790,7 @@ image: /face_smile_man1.png
 
 `src/runtime/components` に `CancelConfirm.vue` を保存し `src/module.ts` を変更
 
-```ts
+```ts {all|12,15-20}
 import { defineNuxtModule, createResolver, addComponentsDir } from '@nuxt/kit'
 export interface ModuleOptions {
   prefix?: string
@@ -822,7 +822,7 @@ export default defineNuxtModule<ModuleOptions>({
 
 `playground/app.vue` で（Prefix をつけて）コンポーネントを読み込む
 
-```html
+```html {all|14-19}
 <script setup lang="ts">
 // Page Component
 const completeCancel = (result: boolean) => {

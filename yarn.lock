@@ -51,9 +51,9 @@
   integrity sha512-l/rJ8tJAZ1Fs0vzQPfap4+YnILWZBxCqtTikjE26Y5hJYY0LY3GJCWU4WXHVIPMJ/0Dm4XbKonXURfLQn5GeZw==
 
 "@iconify-json/bxs@^1.1.3":
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/@iconify-json/bxs/-/bxs-1.1.3.tgz#f284a9452d160a14fcdd4b21308dd3cab862fdfb"
-  integrity sha512-UjOEzVwvZSpIEn3/2n1sHWelcP0Xa3zSIVsfoGOefUwZTMjvnblnS7i3AeT+0rnOHJVdtIeQiZDeDk9lpRC3kQ==
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/@iconify-json/bxs/-/bxs-1.1.4.tgz#5466171bf8fe5c6d9b1d24c65ab43069444fa2df"
+  integrity sha512-iK2shn6bzkQRhoGvsvcnUASeXeRunKPs+2gtmJt6uR5byIcTxypdnnstVOTAeLa5pkAym3/NKJh5tDvNs/8e1w==
   dependencies:
     "@iconify/types" "*"
 
@@ -72,9 +72,9 @@
     "@iconify/types" "*"
 
 "@iconify-json/codicon@^1.1.16":
-  version "1.1.16"
-  resolved "https://registry.yarnpkg.com/@iconify-json/codicon/-/codicon-1.1.16.tgz#31e9d7e8da9ec1975aa266caa0b32287cbb6c2e3"
-  integrity sha512-3ID3XzK+YbeOq2ExtiLch9Fw9b3QUVpxBTVP79JlGj4TNy2/4o6XQSGQbQHu9n5VdNJGP7JhBsSEv6oYsGiEyw==
+  version "1.1.17"
+  resolved "https://registry.yarnpkg.com/@iconify-json/codicon/-/codicon-1.1.17.tgz#db26987f5353d8d44c88ac5e978d6758d2338ed7"
+  integrity sha512-3e24JbCoi5dnOclV0O2DFVsg/TJ6c5vmIfDsGCr2BtnXujMAsyGn3kdqeg076yVI0ksLw5jV37DBAKF7sFpHnw==
   dependencies:
     "@iconify/types" "*"
 
@@ -100,25 +100,25 @@
     "@iconify/types" "*"
 
 "@iconify-json/logos@^1.1.16":
-  version "1.1.16"
-  resolved "https://registry.yarnpkg.com/@iconify-json/logos/-/logos-1.1.16.tgz#a9bed9c55855a897e75069695941e724279c599a"
-  integrity sha512-ka6Irz4qNuk+RNDDVZEMTw3ceUk43FpBxReikswTrUXPlis6LgLZNyh9SV00SFeuBdT+A5gF45kJ124IxtOL5g==
+  version "1.1.17"
+  resolved "https://registry.yarnpkg.com/@iconify-json/logos/-/logos-1.1.17.tgz#3d3d83519657bc3e4cab4b582dc3dce194343325"
+  integrity sha512-N6xKFKZ9UD5thRAwv8TvBQD3MJQe17UnN7QtfXnAVjlcnMIvdZ1lkZ12S/kw38i2v8gIZ6i6B9Cng5NPzTWd/g==
   dependencies:
     "@iconify/types" "*"
 
 "@iconify-json/lucide@^1.1.40":
-  version "1.1.40"
-  resolved "https://registry.yarnpkg.com/@iconify-json/lucide/-/lucide-1.1.40.tgz#69c00330c97194676bc316d33599aa14a0d84e3d"
-  integrity sha512-4GeQtaiv3mJ+b0sn/c2KL8Tgf4XQvsX1AHDOseuGRhgoLCWG+ZdNRFxF5sp1I6T/VcQccegLPOp5XHn3NC1mmA==
+  version "1.1.44"
+  resolved "https://registry.yarnpkg.com/@iconify-json/lucide/-/lucide-1.1.44.tgz#e264164fa6b1f26c7a18c0864f556873145d8c72"
+  integrity sha512-Qmn19AgRH63SnWwyOEyGmmovbKI7EXbhNf1rixvZqy1IR5Z+b+SUZO/caijM+EBpzfB+W90iq0l1U2id1cLzUg==
   dependencies:
     "@iconify/types" "*"
 
 "@iconify-json/mdi@^1.1.9":
-  version "1.1.9"
-  resolved "https://registry.yarnpkg.com/@iconify-json/mdi/-/mdi-1.1.9.tgz#2ff1a49d2cec8659edd1ffbd2c863ea3e060ceaa"
-  integrity sha512-iZY3d7nLmEhSxLU5YBHIxVVPySqNjj6zYcf448TXGBPp2PyToITCOuLEaub0rQ9jBAPOlupQsuPX9ylBfgIJ1w==
+  version "1.1.34"
+  resolved "https://registry.yarnpkg.com/@iconify-json/mdi/-/mdi-1.1.34.tgz#fe2541448975e39cadcb4f4de07c42bbd4650422"
+  integrity sha512-Jle/BrVmaKMMPVitsO3lbJ8VpXUVCAhfMFAMo0VoxLDX8ZiKiQyVDHXPug9wGaXYb9mrFZE4UWVK63Cjx8L3rQ==
   dependencies:
-    "@iconify/types" "^1.0.12"
+    "@iconify/types" "*"
 
 "@iconify-json/ph@^1.1.2":
   version "1.1.2"
@@ -128,18 +128,18 @@
     "@iconify/types" "*"
 
 "@iconify-json/simple-icons@^1.1.25":
-  version "1.1.25"
-  resolved "https://registry.yarnpkg.com/@iconify-json/simple-icons/-/simple-icons-1.1.25.tgz#f21ee2cc41f7c78ceb4ce4c3bdfcb8d8d1e6f098"
-  integrity sha512-wIi0TCyZUWjZWeWHCJTGqANPjARAytQKm7VNRjJoFkoR/bwmvP6TpUX/PoQqJEV5FcbwaBfOEgQNOwsaa6OzZQ==
+  version "1.1.30"
+  resolved "https://registry.yarnpkg.com/@iconify-json/simple-icons/-/simple-icons-1.1.30.tgz#5e39a955fbeb12aaec84cd2ef7dc7f3cf37f0f23"
+  integrity sha512-mBuGvCiEF7bDW2Kgye8PIQFHCRM+r8dDydg5upaiard8V3WDKrnhdc06mcafG++SuBQaFvaS7P76EuMADspGTg==
   dependencies:
     "@iconify/types" "*"
 
 "@iconify/types@*":
   version "2.0.0"
-  resolved "https://registry.npmjs.org/@iconify/types/-/types-2.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/@iconify/types/-/types-2.0.0.tgz#ab0e9ea681d6c8a1214f30cd741fe3a20cc57f57"
   integrity sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==
 
-"@iconify/types@^1.0.12", "@iconify/types@^1.1.0":
+"@iconify/types@^1.1.0":
   version "1.1.0"
   resolved "https://registry.npmjs.org/@iconify/types/-/types-1.1.0.tgz"
   integrity sha512-Jh0llaK2LRXQoYsorIH8maClebsnzTcve+7U3rQUSnC11X4jtPnFuyatqFLvMxZ8MLG8dB4zfHsbPfuvxluONw==
