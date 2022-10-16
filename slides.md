@@ -244,8 +244,9 @@ layout: center
 
 # ビルドやランタイムの特定の機能をフックする
 
-* App Hooks
-* Nuxt Hooks
+* App Hooks (runtime)
+* Nuxt Hooks (build time)
+* Nitro App Hooks (runtime, server-side)
 
 
 
@@ -416,6 +417,40 @@ export interface NuxtHooks {
   'vite:extend': (viteBuildContext: { nuxt: Nuxt, config: ViteInlineConfig }) => HookResult
   'vite:extendConfig': (viteInlineConfig: ViteInlineConfig, env: { isClient: boolean, isServer: boolean }) => HookResult
   'vite:serverCreated': (viteServer: ViteDevServer, env: { isClient: boolean, isServer: boolean }) => HookResult
+}
+```
+
+---
+---
+
+# Nitro App Hooks
+
+```ts
+export default defineNitroPlugin((nitroApp) => {
+  nitroApp.hooks.hook('render:html', (html, { event }) => {
+    console.log('render:html', html)
+    html.bodyAppend.push('<hr>Appended by custom plugin')
+  })
+  nitroApp.hooks.hook('render:response', (response, { event }) => {
+    console.log('render:response', response)
+  })
+})
+```
+
+```ts
+export interface NuxtRenderHTMLContext {
+  htmlAttrs: string[]
+  head: string[]
+  bodyAttrs: string[]
+  bodyPreprend: string[]
+  body: string[]
+  bodyAppend: string[]
+}
+export interface NuxtRenderResponse {
+  body: string,
+  statusCode: number,
+  statusMessage?: string,
+  headers: Record<string, string>
 }
 ```
 
