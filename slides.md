@@ -342,7 +342,8 @@ export interface NuxtHooks {
   // @nuxt/cli
   'generate:cache:ignore': (ignore: string[]) => HookResult
   'config': (options: NuxtConfig) => HookResult
-  'run:before': (options: { argv: string[], cmd: { name: string, usage: string, description: string, options: Record<string, any> }, rootDir: string }) => HookResult
+  'run:before': (options: {
+    path: string = relative(nuxt.options.srcDir, resolve(nuxt.options.srcDir, path: string)) argv: string[], cmd: { name: string, usage: string, description: string, options: Record<string, any> }, rootDir: string }) => HookResult
 
   // nuxi
   'build:error': (error: Error) => HookResult
@@ -737,7 +738,7 @@ import MyModule from '..' // ← 上位のフォルダを読むように設定�
 # `src/module.ts` の中身
 
 ```ts {all|14-16|17-23|19-21}
-import { resolve } from 'path'
+import { relative, resolve } from 'path'
 import { fileURLToPath } from 'url'
 import { defineNuxtModule, addPlugin } from '@nuxt/kit'
 
